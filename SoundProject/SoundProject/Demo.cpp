@@ -228,9 +228,11 @@ int FMOD_Main()
             Common_Draw("Press %s to pause music: %s", Common_BtnStr(BTN_MORE), (isPaused) ? ("Go") : ("Pause"));
             Common_Draw("Press %s to loop music : %s", Common_BtnStr(BTN_TAB), looping);
             Common_Draw("Press %s or %s to high or low volume : %f ", Common_BtnStr(BTN_UP), Common_BtnStr(BTN_DOWN), (volume < 0) ? volume * (-1) : volume);
-            Common_Draw("Press %s to quit", Common_BtnStr(BTN_QUIT));
             Common_Draw("Press %s or %s to pan : %f", Common_BtnStr(BTN_LEFT), Common_BtnStr(BTN_RIGHT), pan);
             Common_Draw("Channels Playing %d", channelsplaying);
+            Common_Draw("");
+            Common_Draw("==================================================");
+            Common_Draw("Press %s to quit", Common_BtnStr(BTN_QUIT));
 
         }
 

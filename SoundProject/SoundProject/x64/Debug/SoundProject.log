@@ -1,11 +1,5 @@
-﻿  common.cpp
-C:\Users\Andrei Ocneanu\Desktop\MasterGameDev\Sound\SoundProjeect\SoundProject\SoundProject\common.cpp(55,5): warning C4996: '_vsnprintf': This function or variable may be unsafe. Consider using _vsnprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\Andrei Ocneanu\Desktop\MasterGameDev\Sound\SoundProjeect\SoundProject\SoundProject\common.cpp(66,5): warning C4996: '_vsnprintf': This function or variable may be unsafe. Consider using _vsnprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\Andrei Ocneanu\Desktop\MasterGameDev\Sound\SoundProjeect\SoundProject\SoundProject\common.cpp(92,5): warning C4996: '_vsnprintf': This function or variable may be unsafe. Consider using _vsnprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\Andrei Ocneanu\Desktop\MasterGameDev\Sound\SoundProjeect\SoundProject\SoundProject\common.cpp(150,5): warning C4996: '_vsnprintf': This function or variable may be unsafe. Consider using _vsnprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  Demo.cpp
+﻿  Demo.cpp
 C:\Users\Andrei Ocneanu\Desktop\MasterGameDev\Sound\SoundProjeect\SoundProject\SoundProject\Demo.cpp(7,28): warning C4101: 'sound2': unreferenced local variable
 C:\Users\Andrei Ocneanu\Desktop\MasterGameDev\Sound\SoundProjeect\SoundProject\SoundProject\Demo.cpp(7,38): warning C4101: 'sound3': unreferenced local variable
 C:\Users\Andrei Ocneanu\Desktop\MasterGameDev\Sound\SoundProjeect\SoundProject\SoundProject\Demo.cpp(7,18): warning C4101: 'sound1': unreferenced local variable
-  Generating Code...
   SoundProject.vcxproj -> C:\Users\Andrei Ocneanu\Desktop\MasterGameDev\Sound\SoundProjeect\SoundProject\x64\Debug\SoundProject.exe
