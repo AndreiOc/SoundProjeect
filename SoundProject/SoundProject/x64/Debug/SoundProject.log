@@ -1,5 +1,3 @@
 ﻿  Demo.cpp
-C:\Users\Andrei Ocneanu\Desktop\MasterGameDev\Sound\SoundProjeect\SoundProject\SoundProject\Demo.cpp(7,28): warning C4101: 'sound2': unreferenced local variable
-C:\Users\Andrei Ocneanu\Desktop\MasterGameDev\Sound\SoundProjeect\SoundProject\SoundProject\Demo.cpp(7,38): warning C4101: 'sound3': unreferenced local variable
-C:\Users\Andrei Ocneanu\Desktop\MasterGameDev\Sound\SoundProjeect\SoundProject\SoundProject\Demo.cpp(7,18): warning C4101: 'sound1': unreferenced local variable
+C:\Users\Andrei Ocneanu\Desktop\MasterGameDev\Sound\SoundProjeect\SoundProject\SoundProject\Demo.cpp(8,27): warning C4101: 'sound_to_play': unreferenced local variable
   SoundProject.vcxproj -> C:\Users\Andrei Ocneanu\Desktop\MasterGameDev\Sound\SoundProjeect\SoundProject\x64\Debug\SoundProject.exe

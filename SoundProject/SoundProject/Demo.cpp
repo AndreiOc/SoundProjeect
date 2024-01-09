@@ -4,9 +4,8 @@
 int FMOD_Main()
 {
     FMOD::System* system;
-    FMOD::Sound* sound1, * sound2, * sound3;
-    FMOD::Channel* channel = 0;
     FMOD::Sound* sounds[6];
+    FMOD::Sound* sound, * sound_to_play;
     FMOD::Channel* channels[6];
 
 
@@ -18,9 +17,10 @@ int FMOD_Main()
 
 
     bool isLooped = false;
-    bool isPaused = true;
+    bool isPaused;
     bool isPlayed = false;
-    float volume;
+   
+    float volume = 1.0f;
     float pan = 0.0f;
 
     Common_Init(&extradriverdata);
@@ -32,7 +32,7 @@ int FMOD_Main()
     ERRCHECK(result);
 
 
-
+    //Static sounds
     result = system->init(32, FMOD_INIT_NORMAL, extradriverdata);
     ERRCHECK(result);
     result = system->createSound(Common_MediaPath("drumloop.wav"), FMOD_LOOP_OFF, 0, &sounds[0]);
@@ -47,9 +47,19 @@ int FMOD_Main()
     ERRCHECK(result);
     result = system->createSound(Common_MediaPath("e.ogg"), FMOD_LOOP_OFF, 0, &sounds[5]);
 
+
+    //Stream sound
+    result = system->createStream(Common_MediaPath("wave_vorbis.fsb"), FMOD_LOOP_NORMAL | FMOD_2D, 0, &sound);
+    ERRCHECK(result);
+
+
+
     result = system->createChannelGroup(name, &channelGroup);
     ERRCHECK(result);
-    channelGroup->getVolume(&volume);
+    channelGroup->setVolume(volume);
+
+    result = channelGroup->getPaused(&isPaused);
+    ERRCHECK(result);
 
     /*
         Main loop
@@ -115,19 +125,11 @@ int FMOD_Main()
         //Press space bar to stop music
         if (Common_BtnPress(BTN_MORE))
         {
-            if (isPaused)
-            {
-                result = channelGroup->setPaused(isPaused);
-                isPaused = false;
-            }
-            else
-            {
-                result = channelGroup->setPaused(isPaused);
-                isPaused = true;
-
-
-            }
+            result = channelGroup->getPaused(&isPaused);
             ERRCHECK(result);
+            result = channelGroup->setPaused(!isPaused);
+            ERRCHECK(result);
+
         }
 
         //Press up or down arrow key to high or low muisc 
@@ -221,14 +223,15 @@ int FMOD_Main()
             Common_Draw("Press %s to play a stereo sound (c)", Common_BtnStr(BTN_ACTION4));
             Common_Draw("Press %s to play a stereo sound (d)", Common_BtnStr(BTN_ACTION5));
             Common_Draw("Press %s to play a stereo sound (e)", Common_BtnStr(BTN_ACTION6));
+
             Common_Draw("");
             Common_Draw("==================================================");
             Common_Draw("");
 
-            Common_Draw("Press %s to pause music: %s", Common_BtnStr(BTN_MORE), (isPaused) ? ("Go") : ("Pause"));
+            Common_Draw("Press %s to pause music: %s", Common_BtnStr(BTN_MORE), (isPaused) ? ("Play") : ("Pause"));
             Common_Draw("Press %s to loop music : %s", Common_BtnStr(BTN_TAB), looping);
-            Common_Draw("Press %s or %s to high or low volume : %f ", Common_BtnStr(BTN_UP), Common_BtnStr(BTN_DOWN), (volume < 0) ? volume * (-1) : volume);
-            Common_Draw("Press %s or %s to pan : %f", Common_BtnStr(BTN_LEFT), Common_BtnStr(BTN_RIGHT), pan);
+            Common_Draw("Press %s or %s to high or low volume : %0.2f ", Common_BtnStr(BTN_UP), Common_BtnStr(BTN_DOWN), (volume < 0) ? volume * (-1) : volume);
+            Common_Draw("Press %s or %s to pan : %0.2f", Common_BtnStr(BTN_LEFT), Common_BtnStr(BTN_RIGHT), pan);
             Common_Draw("Channels Playing %d", channelsplaying);
             Common_Draw("");
             Common_Draw("==================================================");
