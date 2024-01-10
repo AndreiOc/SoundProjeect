@@ -125,12 +125,13 @@ int FMOD_Main()
             result = channels[5]->setChannelGroup(channelGroup);
 
         }
+
+        //Play sixth audio (stream audio)
         if (Common_BtnPress(BTN_ACTION7))
         {
             result = system->playSound(soundStream, 0, false, &channelStream1);
             ERRCHECK(result);
         }
-
 
         //Press space bar to stop music
         if (Common_BtnPress(BTN_MORE))
