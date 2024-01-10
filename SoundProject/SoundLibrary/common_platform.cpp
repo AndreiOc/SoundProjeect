@@ -137,7 +137,7 @@ const char* Common_BtnStr(Common_Button btn)
     case BTN_ACTION5:   return "5";
     case BTN_ACTION6:   return "6";
     case BTN_ACTION7:   return "7";
-    case BTN_LEFT:      return "Left";
+
     case BTN_TAB:       return "TAB";
     case BTN_RIGHT:     return "Right";
     case BTN_UP:        return "Up";

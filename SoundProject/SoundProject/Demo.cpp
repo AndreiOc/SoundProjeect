@@ -5,13 +5,16 @@ int FMOD_Main()
 {
     FMOD::System* system;
     FMOD::Sound* sounds[6];
-    FMOD::Sound* sound, * sound_to_play;
+    FMOD::Sound* soundStream, * sound_to_play; //sound for the stream
+    FMOD::Channel* channelStream1;
+    FMOD::Channel* channelStream2;
+
     FMOD::Channel* channels[6];
 
 
-
-    FMOD::ChannelGroup* channelGroup; //usando il channelgrouop vado ad inserire tutti i suoi sotto un unico canale che posso controllare senza troppi sbatti
-    const char* name = "Hi";
+    //Channel group for the channels
+    FMOD::ChannelGroup* channelGroup; 
+    const char* name = "GMO";
     FMOD_RESULT result;
     void* extradriverdata = 0;
 
@@ -49,13 +52,14 @@ int FMOD_Main()
 
 
     //Stream sound
-    result = system->createStream(Common_MediaPath("wave_vorbis.fsb"), FMOD_LOOP_NORMAL | FMOD_2D, 0, &sound);
+    result = system->createStream(Common_MediaPath("singing.wav"), FMOD_LOOP_OFF , 0, &soundStream);
     ERRCHECK(result);
 
 
 
     result = system->createChannelGroup(name, &channelGroup);
     ERRCHECK(result);
+    
     channelGroup->setVolume(volume);
 
     result = channelGroup->getPaused(&isPaused);
@@ -121,6 +125,12 @@ int FMOD_Main()
             result = channels[5]->setChannelGroup(channelGroup);
 
         }
+        if (Common_BtnPress(BTN_ACTION7))
+        {
+            result = system->playSound(soundStream, 0, false, &channelStream1);
+            ERRCHECK(result);
+        }
+
 
         //Press space bar to stop music
         if (Common_BtnPress(BTN_MORE))
@@ -131,7 +141,6 @@ int FMOD_Main()
             ERRCHECK(result);
 
         }
-
         //Press up or down arrow key to high or low muisc 
         if (Common_BtnPress(BTN_UP))
         {
@@ -159,24 +168,24 @@ int FMOD_Main()
         {
             if (!isLooped)
             {
-                result = sounds[0]->setMode(FMOD_LOOP_NORMAL);
-                ERRCHECK(result);
-                result = sounds[1]->setMode(FMOD_LOOP_NORMAL);
-                ERRCHECK(result);
-                result = sounds[2]->setMode(FMOD_LOOP_NORMAL);
-                ERRCHECK(result);
+                for (int count = 0; count < 6; count++)
+                {
+                    result = sounds[count]->setMode(FMOD_LOOP_NORMAL);
+                    ERRCHECK(result);
+                }
                 isLooped = true;
             }
             else
             {
-                channelGroup->stop();
+                //I need to stop the sound and restart it after the playing
+                result = channelGroup->stop();
+                ERRCHECK(result);
 
-                result = sounds[0]->setMode(FMOD_LOOP_OFF);
-                ERRCHECK(result);
-                result = sounds[1]->setMode(FMOD_LOOP_OFF);
-                ERRCHECK(result);
-                result = sounds[2]->setMode(FMOD_LOOP_OFF);
-                ERRCHECK(result);
+                for (int count = 0; count < 6; count++)
+                {
+                    result = sounds[count]->setMode(FMOD_LOOP_OFF);
+                    ERRCHECK(result);
+                }
                 isLooped = false;
             }
         }
@@ -208,7 +217,7 @@ int FMOD_Main()
             bool paused = 0;
             int channelsplaying = 0;
 
-            const char* looping = (isLooped) ? looping = "looping" : "noLooping";
+            const char* looping = (isLooped) ? looping = "yes" : "no";
 
             system->getChannelsPlaying(&channelsplaying, NULL);
 
@@ -223,6 +232,7 @@ int FMOD_Main()
             Common_Draw("Press %s to play a stereo sound (c)", Common_BtnStr(BTN_ACTION4));
             Common_Draw("Press %s to play a stereo sound (d)", Common_BtnStr(BTN_ACTION5));
             Common_Draw("Press %s to play a stereo sound (e)", Common_BtnStr(BTN_ACTION6));
+            Common_Draw("Press %s to play a stream sound (wave_vorbis)", Common_BtnStr(BTN_ACTION7));
 
             Common_Draw("");
             Common_Draw("==================================================");

@@ -1,3 +1,4 @@
 ﻿  Demo.cpp
-C:\Users\Andrei Ocneanu\Desktop\MasterGameDev\Sound\SoundProjeect\SoundProject\SoundProject\Demo.cpp(8,27): warning C4101: 'sound_to_play': unreferenced local variable
+C:\Users\Andrei Ocneanu\Desktop\MasterGameDev\Sound\SoundProjeect\SoundProject\SoundProject\Demo.cpp(10,20): warning C4101: 'channelStream2': unreferenced local variable
+C:\Users\Andrei Ocneanu\Desktop\MasterGameDev\Sound\SoundProjeect\SoundProject\SoundProject\Demo.cpp(8,33): warning C4101: 'sound_to_play': unreferenced local variable
   SoundProject.vcxproj -> C:\Users\Andrei Ocneanu\Desktop\MasterGameDev\Sound\SoundProjeect\SoundProject\x64\Debug\SoundProject.exe
