@@ -295,17 +295,17 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE /*hPrevInstance*/, PSTR /*pCmd
     Common_Private_Argc = __argc;
     Common_Private_Argv = __argv;
 
-    WNDCLASSA wc = { };
+    WNDCLASSA wc = {};
     wc.style = CS_HREDRAW | CS_VREDRAW;
     wc.lpfnWndProc = WndProc;
     wc.hInstance = hInstance;
     wc.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
-    wc.lpszClassName = CLASS_NAME;
+    wc.lpszClassName = "FMOD Example Window Class";
 
     ATOM atom = RegisterClassA(&wc);
     assert(atom);
 
-    gWindow = CreateWindowA(CLASS_NAME, "FMOD Example", WS_CAPTION | WS_SYSMENU, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, nullptr, nullptr, hInstance, nullptr);
+    gWindow = CreateWindowA("FMOD Example Window Class", "FMOD Example", WS_CAPTION | WS_SYSMENU, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, nullptr, nullptr, hInstance, nullptr);
     assert(gWindow);
 
     ShowWindow(gWindow, nCmdShow);

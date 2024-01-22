@@ -4,16 +4,16 @@
 int FMOD_Main()
 {
     FMOD::System* system;
-    FMOD::Sound* sounds[6];
+    FMOD::Sound* sounds[6]; //six audio sound 
     FMOD::Sound* soundStream, * sound_to_play; //sound for the stream
-    FMOD::Channel* channelStream1;
-    FMOD::Channel* channelStream2;
+    FMOD::Channel* channelStream1; //first stream audio channel
+    FMOD::Channel* channelStream2; //second stream audio channels
 
-    FMOD::Channel* channels[6];
+    FMOD::Channel* channels[6]; //six channels for music
 
 
-    //Channel group for the channels
-    FMOD::ChannelGroup* channelGroup; 
+    FMOD::ChannelGroup* channelGroup; //Channel group for the channels
+
     const char* name = "GMO";
     FMOD_RESULT result;
     void* extradriverdata = 0;
@@ -54,8 +54,6 @@ int FMOD_Main()
     //Stream sound
     result = system->createStream(Common_MediaPath("singing.wav"), FMOD_LOOP_OFF , 0, &soundStream);
     ERRCHECK(result);
-
-
 
     result = system->createChannelGroup(name, &channelGroup);
     ERRCHECK(result);
